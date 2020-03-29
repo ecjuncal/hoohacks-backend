@@ -1,11 +1,13 @@
 import os
-import gae_env
-from gae_env import ValueNotSetError, NOT_SET_VALUE
+from google.cloud import datastore
 
 class Config:
     # General Config
     TESTING = True
     DEBUG = True
 
-    SQLALCHEMY_DATABASE_URI = gae_env.get('Database id:5634161670881280')
+    client = datastore.Client()
+    key = client.key('Database', 5634161670881280)
+
+    SQLALCHEMY_DATABASE_URI = client.get(key)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
