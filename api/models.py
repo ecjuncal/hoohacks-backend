@@ -44,7 +44,7 @@ class Category(db.Model):
     amount = db.Column(db.Float, nullable=False)
     created = db.Column(db.DateTime, index=False, unique=False, nullable=False)
     spending_type = db.Column(db.String(25), index=False, unique=False, nullable=False)
-    # UserId
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
 class Transaction(db.Model):
@@ -52,5 +52,5 @@ class Transaction(db.Model):
     name = db.Column(db.String(50), index=False, unique=False, nullable=False)
     amount = db.Column(db.Float, nullable=False)
     created = db.Column(db.DateTime, index=False, unique=False, nullable=False)
-    # Category
-    # UserId
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
