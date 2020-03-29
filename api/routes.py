@@ -6,7 +6,7 @@ from .reponses import *
 from datetime import datetime as dt
 
 
-@app.route("/login", methods=['POST'])
+@app.route("/api/login", methods=['POST'])
 def login():
     data = request.get_json()
     email = data['email']
@@ -21,22 +21,23 @@ def login():
     return jsonify(ErrorResponse("User does not exist or credentials are incorrect.").__dict__)
 
 
-@app.route("/register", methods=['POST'])
+@app.route("/api/register", methods=['POST'])
 def register():
     data = request.get_json()
     fname = data['fname']
     lname = data['lname']
     email = data['email']
+    phone = data['phone']
     password = data['password']
     income = data['monthly_income']
 
-    if fname and lname and email and password and income:
+    if fname and lname and email and password and income and phone:
         user_exists = User.query.filter(User.email == email).first()
 
         if user_exists:
             return jsonify(ErrorResponse("User with that email already exists").__dict__)
 
-        new_user = User(first_name=fname, last_name=lname, email=email, created=dt.now(), monthly_income=income)
+        new_user = User(first_name=fname, last_name=lname, email=email, phone=phone, created=dt.now(), monthly_income=income)
         new_user.set_password(password)
 
         db.session.add(new_user)
@@ -47,7 +48,7 @@ def register():
         return jsonify(ErrorResponse("Missing information.").__dict__)
 
 
-@app.route("/user", methods=['GET'])
+@app.route("/api/user", methods=['GET'])
 def get_user():
     data = request.get_json()
     email = data['email']

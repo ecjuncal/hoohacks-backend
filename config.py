@@ -5,5 +5,8 @@ class Config:
     TESTING = True
     DEBUG = True
 
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///localdb.db'
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(BASE_DIR, "localdb.db")
+
+    SQLALCHEMY_DATABASE_URI = "sqlite:///" + db_path
     SQLALCHEMY_TRACK_MODIFICATIONS = False
