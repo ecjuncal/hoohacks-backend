@@ -12,6 +12,7 @@ class User(db.Model):
     password = db.Column(db.String(128), nullable=False)
     monthly_income = db.Column(db.Float, nullable=False)
     created = db.Column(db.DateTime, index=False, unique=False, nullable=False)
+    last_notified = db.Column(db.DateTime, index=False, unique=False, nullable=True)
     # Transactions
     # Categories
 

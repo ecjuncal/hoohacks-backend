@@ -1,10 +1,5 @@
 runtime: python37
 
-#env_variables:
-#  MYSQL_DSN: $MYSQL_DSN
-#  MYSQL_USER: $MYSQL_USER
-#  MYSQL_PASSWORD: $MYSQL_PASSWORD
-
 entrypoint: gunicorn -b :$PORT runserver:app
 
 runtime_config:
