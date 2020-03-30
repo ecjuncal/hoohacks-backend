@@ -7,5 +7,5 @@ class Config:
     DEBUG = True
 
     load_dotenv()
-    SQLALCHEMY_DATABASE_URI = os.environ.get('LOCAL_URI')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('PROD_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False

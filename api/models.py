@@ -40,7 +40,7 @@ class Category(db.Model):
     __tablename__ = 'category'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), index=False, unique=False, nullable=False)
+    name = db.Column(db.String(50), index=False, unique=True, nullable=False)
     amount = db.Column(db.Float, nullable=False)
     created = db.Column(db.DateTime, index=False, unique=False, nullable=False)
     spending_type = db.Column(db.String(25), index=False, unique=False, nullable=False)
